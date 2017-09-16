@@ -1,0 +1,11 @@
+<launch>
+
+<arg name="device"     default="/dev/video1" />
+<arg name="img_width"  default="1920" />
+<arg name="img_height" default="1080" />
+<arg name="top_crop"   default="540"  />
+
+<node pkg="gscam" type="gscam" name="gscam">
+        <env name="GSCAM_CONFIG" value="v4l2src device=$(arg device) ! video/x-raw, width=$(arg img_width), height=$(arg img_height) ! videocrop top=$(arg top_crop) left=0 right=0 bottom=0 ! videoconvert" />
+    </node>
+</launch>

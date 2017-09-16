@@ -1,0 +1,44 @@
+<launch>
+    <arg name="prototxt_path"   default="/home/nvidia/models/segnet/deploy.prototxt" />
+    <arg name="model_path"      default="/home/nvidia/models/segnet/deploy.caffemodel" />
+    <arg name="output_layer"    default="score_fr_21classes" />
+    <arg name="use_fp16"        default="true" />
+    <arg name="rate_hz"         default="30" />
+
+    <arg name="no_viz"       default="false" />
+    <arg name="from_image"   default="false" />
+    <arg name="from_bag"     default="false" />
+    <arg name="image_path"   default="/home/nvidia/jetson-UGV/test-images/1920x540/input-image.png" />
+
+    <arg name="colors_file"     default="$(optenv HOME /home/nvidia)/models/segnet/class_colors.lut" />
+    
+    <!-- Choose source data -->
+    <group if="$(arg from_image)">
+    	   <node pkg="image_pub" type="image_pub_node" name="segnet_image" output="screen">
+	   	 <param name="img_path" value="$(arg image_path)" />
+		 <param name="repeat" value="true" />
+	    </node>
+    </group>
+    <group unless="$(arg from_bag)">
+        <group unless="$(arg from_image)">
+    	       <include file="$(find caffe_ros)/launch/gscam.launch" />
+	</group>
+    </group>
+
+    <!-- Start the caffe_ros node -->
+    <node pkg="caffe_ros" type="caffe_ros_node" name="segnet" output="screen">
+        <param name="prototxt_path"           value="$(arg prototxt_path)" />
+        <param name="model_path"              value="$(arg model_path)" />
+        <param name="output_layer"            value="$(arg output_layer)" />
+        <param name="use_fp16"                value="$(arg use_fp16)" />
+        <param name="max_rate_hz"             value="$(arg rate_hz)" />
+        <param name="post_proc"               value="Segmentation" />
+    </node>
+
+    <group unless="$(arg no_viz)">
+        <include file="$(find output_view)/launch/segnet-viz.launch" >
+		 <arg name="colors_file" value="$(arg colors_file)"/>
+	</include>
+    </group>
+
+</launch>

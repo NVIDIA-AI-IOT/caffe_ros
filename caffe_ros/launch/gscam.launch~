@@ -1,0 +1,6 @@
+<launch>
+<node pkg="gscam" type="gscam" name="gscam">
+        <!-- Use 2 sinks (UDP H.264 streaming + ROS topic) -->
+        <env name="GSCAM_CONFIG" value="v4l2src device=$(arg device) ! tee name=t ! queue ! videoconvert ! omxh264enc ! video/x-h264, stream-format=byte-stream ! h264parse ! rtph264pay config-interval=1 ! udpsink host=$(arg host_ip) port=6000 t. ! queue ! video/x-raw, width=$(arg img_width), height=$(arg img_height) ! videoconvert" />
+    </node>
+</launch>

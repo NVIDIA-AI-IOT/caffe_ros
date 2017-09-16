@@ -1,0 +1,49 @@
+#pragma once
+
+namespace caffe_ros
+{
+  uint8_t* getArgMax(const float *scores, size_t width, size_t height, size_t num_channels)
+  {
+    uint8_t *classMap[width*height];
+    
+    for( uint32_t y=0; y < height; y++ )
+      {
+	for( uint32_t x=0; x < width; x++ )
+	  {
+
+	    // find max probability across the channels
+	    float p_max[3] = {-100000.0f, -100000.0f, -100000.0f };
+	    int   c_max[3] = { -1, -1, -1 };
+
+	    for( uint32_t c=0; c < num_channels; c++ )// classes
+	      {
+		// get current score
+		const float p = scores[c * width * height + y * width + x];
+
+		// choose top three classes
+		if( c_max[0] < 0 || p > p_max[0] )
+		  {
+		    p_max[0] = p;
+		    c_max[0] = c;
+		  }
+		else if( c_max[1] < 0 || p > p_max[1] )
+		  {
+		    p_max[1] = p;
+		    c_max[1] = c;
+		  }
+		else if( c_max[2] < 0 || p > p_max[2] )
+		  {
+		    p_max[2] = p;
+		    c_max[2] = c;
+		  }
+	      }
+
+	    //	    const int argmax = (c_max[0] == ignoreID) ? c_max[1] : c_max[0];
+
+	    //	    classMap[y * s_w + x] = argmax;
+	    classMap[y * width + x] = c_max[0];
+	  }
+      }
+    return classMap;
+  }
+}

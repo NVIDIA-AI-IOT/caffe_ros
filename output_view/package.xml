@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package>
+  <name>output_view</name>
+  <version>0.0.0</version>
+  <description>The output_view package</description>
+
+  <maintainer email="rgardner@nvidia.com">Rachel Gardner</maintainer>
+  <license>BSD</license>
+
+  <!-- Url tags are optional, but multiple are allowed, one per tag -->
+  <!-- Optional attribute type can be: website, bugtracker, or repository -->
+  <!-- Example: -->
+  <!-- <url type="website">http://wiki.ros.org/output_view</url> -->
+
+  <author email="rachel0@stanford.edu">Rachel Gardner</author> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_filters</build_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>message_filters</run_depend>
+  
+</package>

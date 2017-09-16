@@ -1,0 +1,11 @@
+<launch>
+	<arg name="colors_file" />
+	<arg name="output_height" default="1080" />
+	<arg name="output_width" default="1920" />
+
+	<node pkg="output_view" type="output_view" name="output_view" output="screen">
+	      <param name="colors_file" value="$(arg colors_file)"/>
+	      <param name="output_height" value="$(arg output_height)"/>
+	      <param name="output_width" value="$(arg output_width)"/>
+	</node>
+</launch>
