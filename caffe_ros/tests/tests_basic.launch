@@ -76,6 +76,7 @@ rostest caffe_ros tests_basic.launch test_data_dir:=$REDTAIL_TEST_DIR \
         <param name="use_cached_model" value="false" />
     </node>
 
+<!--
     <node pkg="caffe_ros" type="caffe_ros_node" name="fcnalexnet_dnn">
         <param name="camera_topic"  value="/camera_sidewalk/image_raw" />
         <param name="prototxt_path" value="$(arg segnet_prototxt_path)" />
@@ -86,7 +87,7 @@ rostest caffe_ros tests_basic.launch test_data_dir:=$REDTAIL_TEST_DIR \
         <param name="max_rate_hz"   value="1" />
         <param name="use_cached_model" value="false" />
     </node>
-
+-->
     <test pkg="caffe_ros" test-name="CaffeRosTests" type="caffe_ros_tests" time-limit="300.0">
         <param name="test_data_dir" value="$(arg test_data_dir)" />
     </test>

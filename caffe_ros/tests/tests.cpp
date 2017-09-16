@@ -268,7 +268,7 @@ TEST(CaffeRosTests, YoloNetPredictionsFP16)
         }
     }
 }
-
+/*
 TEST(CaffeRosTests, FCNAlexNetPredictions)
 {
     ros::NodeHandle nh("~");
@@ -321,7 +321,7 @@ TEST(CaffeRosTests, FCNAlexNetPredictions)
         }
     }
 }
-
+*/
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "CaffeRosTests");
