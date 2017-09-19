@@ -72,6 +72,7 @@ public:
     cv::addWeighted(scaled_image, alpha, raw_image_ptr->image, 1 - alpha, 0.0, final_image);
     
     // Update GUI Window
+    cv::namedWindow(OPENCV_WINDOW, CV_WINDOW_NORMAL | CV_WINDOW_KEEPRATIO | CV_GUI_NORMAL);
     cv::imshow(OPENCV_WINDOW, final_image);
     cv::waitKey(3);
 
