@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   message_filters
   std_msgs
+  OpenCV
 )
 
 ## System dependencies are found with CMake's conventions
@@ -121,6 +122,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -151,6 +153,7 @@ add_executable(${PROJECT_NAME} src/output_view.cpp)
 ## Specify libraries to link a library or executable target against
  target_link_libraries(${PROJECT_NAME}
    ${catkin_LIBRARIES}
+   ${OpenCV_LIBRARIES}
  )
 
 #############
