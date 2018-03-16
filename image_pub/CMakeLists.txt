@@ -1,9 +1,18 @@
+
 cmake_minimum_required(VERSION 3.1)
 project(image_pub)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  sensor_msgs
+  camera_info_manager
+)
+find_package(OpenCV REQUIRED)
+
+catkin_package(
+  CATKIN_DEPENDS roscpp std_msgs sensor_msgs camera_info_manager
+  DEPENDS        OpenCV
 )
 
 ###########
@@ -14,7 +23,6 @@ set (CMAKE_CXX_STANDARD 14)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 include_directories(
-  include
   ${catkin_INCLUDE_DIRS}
 )
 
