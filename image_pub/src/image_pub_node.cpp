@@ -82,20 +82,6 @@ int main(int argc, char **argv)
             // Convert image from BGR format used by OpenCV to RGB.
             cv::cvtColor(img, img, CV_BGR2RGB);
             
-            /*
-            if (true) {
-              cv::Point2f center(img.cols/2.0, img.rows/2.0);
-              cv::Mat rotate = cv::getRotationMatrix2D(center, -90, 1);
-              cv::Mat dst;
-              cv::warpAffine(img, dst, rotate, img.size());
-              img = dst;
-            }
-            
-            if (img.cols != target_width || img.rows != target_height) {
-              cv::resize(img, img, cv::Size(target_width, target_height));
-            }
-            */
-            
             auto img_msg = boost::make_shared<sensor_msgs::Image>();
             img_msg->header.stamp    = ros::Time::now();
             img_msg->header.frame_id = frame_id;
